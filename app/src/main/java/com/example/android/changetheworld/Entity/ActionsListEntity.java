@@ -1,5 +1,8 @@
 package com.example.android.changetheworld.Entity;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -7,6 +10,8 @@ import java.util.List;
  */
 
 public class ActionsListEntity {
+    @SerializedName("acoes_sociais")
+    @Expose
     private List<ActionsEntity> actions;
 
     public List<ActionsEntity> getActions() {

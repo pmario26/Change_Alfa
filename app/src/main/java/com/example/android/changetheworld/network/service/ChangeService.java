@@ -13,6 +13,6 @@ import retrofit2.http.Header;
  */
 
 public interface ChangeService {
-    @GET("acoes_sociais")
+    @GET("sociais.json")
     Call<ActionsListEntity> getActions(@Header("Authorization") String sessionToken);
 }

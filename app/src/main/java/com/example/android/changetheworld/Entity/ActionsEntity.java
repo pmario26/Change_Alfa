@@ -1,17 +1,34 @@
 package com.example.android.changetheworld.Entity;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by pmario on 13/12/17.
  */
 
 public class ActionsEntity {
-    private long id;
+    @SerializedName("id")
+    @Expose
+    private Long id;
+
+    @SerializedName("name")
+    @Expose
     private String name;
+
+    @SerializedName("image")
+    @Expose
     private String image;
+
+    @SerializedName("description")
+    @Expose
     private String description;
+
+    @SerializedName("site")
+    @Expose
     private String site;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

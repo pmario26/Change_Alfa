@@ -21,19 +21,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Actions extends AppCompatActivity {
+public class Actions extends AppCompatActivity implements ActionsView{
 
     @BindView(R.id.rv_actions)
     RecyclerView rvActions;
-
+    ActionsPresenter actionsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actions);
         ButterKnife.bind(this);
-        //dothething();
+        actionsPresenter = new ActionsPresenter(this);
         Toast.makeText(Actions.this, "OLA VOCE", Toast.LENGTH_SHORT).show();
+        actionsPresenter.updateList();
 
     }
     void dothething(){
@@ -67,6 +68,11 @@ public class Actions extends AppCompatActivity {
             public void onClick(View view, int position) {
                 Toast.makeText(Actions.this, "Clique Rápido", Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onLongClick(View view, int adapterPosition) {
+
+            }
         } );
 
         rvActions.setAdapter(actionsAdapter);
@@ -75,6 +81,12 @@ public class Actions extends AppCompatActivity {
 
         rvActions.setLayoutManager(layoutManager);
     }
+
+    @Override
+    public void showMessage(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
 
 }
 

@@ -12,12 +12,14 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 
 import com.example.android.changetheworld.Entity.ActionsEntity;
 import com.example.android.changetheworld.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 /**
  * Created by pmario on 15/12/17.
@@ -32,6 +34,30 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.ViewHold
     public ActionsAdapter(List<ActionsEntity> actionsList, Context context) {
         this.actionsList = actionsList;
         this.context = context;
+    }
+
+
+
+    @Override
+    public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.actions_list_item, parent, false);
+        return new ViewHolder(v);
+    }
+
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        ActionsEntity actionsEntity = actionsList.get(position);
+        holder.action_name.setText(actionsEntity.getName());
+        Picasso.with(context)
+                .load(actionsEntity.getImage())
+                .centerCrop()
+                .fit()
+                .into(holder.imgBackgroud);
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return actionsList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -53,25 +79,15 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.ViewHold
                 onRecyclerViewSelected.onClick(view, getAdapterPosition());
 
         }
+        @OnLongClick(R.id.container)
+        boolean onLongItemClick(View view){
+            if(onRecyclerViewSelected != null)
+                onRecyclerViewSelected.onLongClick(view, getAdapterPosition());
+
+            return true;
+        }
+
     }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.actions_list_item, parent, false);
-        return new ViewHolder(v);
-    }
-
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        ActionsEntity actionsEntity = actionsList.get(position);
-        //holder.imgBackgroud.setImageBitmap();
-    }
-
-    @Override
-    public int getItemCount() {
-        return actionsList.size();
-    }
-
-
 
     public void setOnRecyclerViewSelected(OnRecyclerViewSelected onRecyclerViewSelected){
         this.onRecyclerViewSelected = onRecyclerViewSelected;

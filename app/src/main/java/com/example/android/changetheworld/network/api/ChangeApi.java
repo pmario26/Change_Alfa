@@ -29,12 +29,13 @@ public class ChangeApi {
 
     private ChangeApi(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://dl.dropboxusercontent.com/s/50vmlj7dhfaibpj/sociais.json/")
-                .addConverterFactory(defaultConverterFactory()).build();
+                .baseUrl("https://dl.dropboxusercontent.com/s/50vmlj7dhfaibpj/")
+                .addConverterFactory(defaultConvertFactory())
+                .build();
         this.changeService = retrofit.create(ChangeService.class);
     }
 
-    private Converter.Factory defaultConverterFactory() {
+    private Converter.Factory defaultConvertFactory() {
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
@@ -50,6 +51,6 @@ public class ChangeApi {
     }
 
     public Call<ActionsListEntity> getActions(){
-        return changeService.getActions(sessionToken);
+        return changeService.getActions(getSessionToken());
     }
 }
