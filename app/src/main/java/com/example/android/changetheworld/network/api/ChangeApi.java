@@ -1,5 +1,6 @@
 package com.example.android.changetheworld.network.api;
 
+import com.example.android.changetheworld.Entity.ActionsDetailsEntity;
 import com.example.android.changetheworld.Entity.ActionsListEntity;
 import com.example.android.changetheworld.network.service.ChangeService;
 import com.google.gson.FieldNamingPolicy;
@@ -52,5 +53,9 @@ public class ChangeApi {
 
     public Call<ActionsListEntity> getActions(){
         return changeService.getActions(getSessionToken());
+    }
+
+    public Call<ActionsDetailsEntity> getActionsDetail(long id) {
+        return changeService.getActionsDetail(sessionToken,id);
     }
 }

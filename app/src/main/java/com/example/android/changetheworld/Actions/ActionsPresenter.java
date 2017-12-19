@@ -35,10 +35,8 @@ public class ActionsPresenter {
                 public void onResponse(Call<ActionsListEntity> call,Response<ActionsListEntity> response) {
                     if (response.isSuccessful()) {
                         ActionsListEntity actionsListEntity = response.body();
-                        actionsView.showMessage("deu certo meu chapa1");
                         if (actionsListEntity != null) {
                             actionsView.updateList(actionsListEntity.getActions());
-                            actionsView.showMessage("deu certo meu chapa2");
 
                         }
 
@@ -46,17 +44,32 @@ public class ActionsPresenter {
 
                     }
                     else{
-                        actionsView.showMessage("conecta mas falha");
+                        actionsView.showMessage("Falha após a conexão");
 
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ActionsListEntity> call,Throwable  t) {
-                    actionsView.showMessage("nem conecta bixo");
+                    actionsView.showMessage("Falha na conexão com o servidor");
+                    /*
+                    String jsonActions = actionsView.getSavedActions();
+                    actionsView.showMessage("pegando string");
+                    ActionsListEntity actionsListEntity = new Gson().fromJson(jsonActions, ActionsListEntity.class);
+                    if (actionsListEntity != null) {
+                        actionsView.updateList(actionsListEntity.getActions());
+                        actionsView.showMessage("deu certo meu chapa2");
+
+                    }
+                    */
 
                 }
             });
 
+    }
+
+    public void saveMovies() {
+        String jsonActionsEntity = new Gson().toJson(actionsListEntity);
+        actionsView.saveMoviesInSharedPreferences(jsonActionsEntity);
     }
 }

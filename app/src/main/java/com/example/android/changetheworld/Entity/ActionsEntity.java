@@ -3,26 +3,36 @@ package com.example.android.changetheworld.Entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by pmario on 13/12/17.
  */
 
-public class ActionsEntity {
-    @SerializedName("id")
-    @Expose
+public class ActionsEntity implements Serializable {
+   // @SerializedName("id")
+   //@Expose
     private Long id;
 
-    @SerializedName("name")
-    @Expose
+    //@SerializedName("name")
+    //@Expose
     private String name;
 
-    @SerializedName("image")
-    @Expose
+    //@SerializedName("image")
+    //@Expose
     private String image;
 
     @SerializedName("description")
     @Expose
     private String description;
+
+    public ActionsEntity(Long id, String name, String image, String description, String site) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.site = site;
+    }
 
     @SerializedName("site")
     @Expose

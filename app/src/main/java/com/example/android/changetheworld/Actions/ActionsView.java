@@ -1,6 +1,7 @@
 package com.example.android.changetheworld.Actions;
 
 import com.example.android.changetheworld.Entity.ActionsEntity;
+import com.example.android.changetheworld.Entity.ActionsListEntity;
 
 import java.util.List;
 
@@ -12,4 +13,10 @@ public interface ActionsView {
     void updateList(List<ActionsEntity> actionsList);
 
     void showMessage(String s);
+
+    void saveMoviesInSharedPreferences(String jsonActionsEntity);
+
+    void openActionsOffline();
+
+    String getSavedActions();
 }
