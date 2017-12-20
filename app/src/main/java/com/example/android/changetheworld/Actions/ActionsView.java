@@ -19,4 +19,8 @@ public interface ActionsView {
     void openActionsOffline();
 
     String getSavedActions();
+
+    void showLoading();
+
+    void hideLoading();
 }

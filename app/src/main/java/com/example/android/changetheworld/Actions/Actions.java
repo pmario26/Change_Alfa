@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.view.View;
 
@@ -31,7 +32,12 @@ public class Actions extends AppCompatActivity implements ActionsView{
 
     @BindView(R.id.rv_actions)
     RecyclerView rvActions;
+    @BindView(R.id.linear_layout_loading)
+    LinearLayout loadingLayout;
     ActionsPresenter actionsPresenter;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +130,16 @@ public class Actions extends AppCompatActivity implements ActionsView{
         showMessage("mandando string");
         return jsonActions;
 
+    }
+
+    @Override
+    public void showLoading() {
+        loadingLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingLayout.setVisibility(View.GONE);
     }
 
 

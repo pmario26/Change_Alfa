@@ -30,6 +30,7 @@ public class ActionsPresenter {
 
     void updateList(){
             final ChangeApi changeApi = ChangeApi.getInstance();
+            actionsView.showLoading();
             changeApi.getActions().enqueue(new Callback<ActionsListEntity>() {
                 @Override
                 public void onResponse(Call<ActionsListEntity> call,Response<ActionsListEntity> response) {
@@ -47,6 +48,7 @@ public class ActionsPresenter {
                         actionsView.showMessage("Falha após a conexão");
 
                     }
+                    actionsView.hideLoading();
                 }
 
                 @Override
@@ -62,7 +64,7 @@ public class ActionsPresenter {
 
                     }
                     */
-
+                    actionsView.hideLoading();
                 }
             });
 
